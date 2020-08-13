@@ -1,0 +1,139 @@
+#version: 2.1
+#commands:
+#  sayhello:
+#    description: "A very simple command for demonstration purposes"
+#    parameters:
+#      to:
+#        type: string
+#        default: "Hello World"
+#    steps:
+#      - run: echo << parameters.to >>
+#
+#executors:
+#  my-executor:
+#    docker:
+#      - image: circleci/ruby:2.5.1-node-browsers
+#
+#jobs:
+#  job1:
+#    docker:
+#      - image: circleci/node:10
+#
+#    steps:
+#      - checkout
+#      - run: npm install
+#      - run: npm test
+#
+#  job2:
+#    docker:
+#      - image: circleci/node:10
+#
+#    steps:
+#      - checkout
+#      - run: cat README.md
+#
+##  my-job:
+##    executor: my-executor
+##    steps:
+##      - run: echo outside the executor
+#
+#  test-job:
+#    docker:
+#      - image: buildpack-deps:trusty
+#      - image: mongo:2.6.8
+##        entrypoint: ["echo", "this is", "test"]
+#      - image: 20200812/circlecidemo:v3
+#        auth:
+#          username: $DOCKERHUB_USERNAME
+#          password: $DOCKERHUB_PASSWORD
+#
+#    working_directory: ~/project
+#    steps:
+#            # command will execute in trusty container
+#            # and can access mongo on localhost
+#      - checkout
+#      - set-remote-docker
+##      - run: echo this is step
+##      - run: sleep 5 && nc -vz localhost 27017
+#
+#
+#  machine-job:
+#    machine:
+#      image: ubuntu-1604:202007-01
+#    steps:
+#      - checkout
+#      - run:
+#          name: "Testing"
+#          command: echo "Hi"
+#
+#  job4:
+#    docker:
+#      - image: circleci/node:10
+#    steps:
+#      - run:
+#          name: Install Docker Compose
+#          command: |
+#            set -x
+#            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+#            chmod +x /usr/local/bin/docker-compose
+#
+#workflows:
+#  version: 2
+#  one-and-two:
+#    jobs:
+#      - test-job
+#
+##  two-and-three:
+##    jobs:
+##      - job1
+##      - job2:
+##          requires:
+##            - job1
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+#      - image: mongo:2.6.8
+    steps:
+      - checkout
+      # ... steps for building/testing app ...
+#      - run:
+#          name: Install Docker client
+#          command: apk add docker-cli
+
+      - setup_remote_docker:
+          version: 18.06.0-ce
+#          docker_layer_caching: true
+
+
+      # build and push Docker image
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+
+      - run:
+          name: Start container and verify it is working
+          command: |
+            set -x
+            docker-compose up -d
+            docker run --network container:web \
+              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:5000
+      #...
+
+
+      #      - run: |
+#          TAG=0.1.$CIRCLE_BUILD_NUM
+#          docker build -t circleci-public/circleci-demo-docker:$TAG .
+#          echo $DOCKERHUB_PASSWORD | docker login -username $DOCKERHUB_USERNAME --password-stdin
+#          docker push circleci-public/circleci-demo-docker:$TAG
+
+
+      #      - run:
+#          name: Start container and verify it is working
+#          command: |
+#            set -x
+#            docker-compose up -d \
