@@ -91,51 +91,65 @@
 ##            - job1
 version: 2.1
 jobs:
-  build:
+  job1:
+    docker:
+      - image: circleci/node:10
+
+      working_directory: /mnt/ramdisk
+
+      steps:
+        - run: |
+            echo '#!/bin/sh' > run.sh
+            echo 'echo Hello world!' >> run.sh
+            chmod +x run.sh
+        - run: ./run.sh
+
+  job2:
     docker:
       - image: circleci/node:10
       - image: mongo:2.6.8
-    steps:
-      - checkout
-      # ... steps for building/testing app ...
-#      - run:
-#          name: Install Docker client
-#          command: apk add docker-cli
+      steps:
+        - checkout
+        # ... steps for building/testing app ...
+        #      - run:
+        #          name: Install Docker client
+        #          command: apk add docker-cli
 
-      - setup_remote_docker:
-          version: 18.06.0-ce
-#          docker_layer_caching: true
-
-
-      # build and push Docker image
-      - run:
-          name: Install Docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-
-      - run:
-          name: Start container and verify it is working
-          command: |
-            set -x
-            docker-compose up -d
-#            curl http://localhost:5000
-
-      - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t 20200812/circleci-demo-docker:$TAG .
-#          echo $DOCKERHUB_PASSWORD | docker login -username $DOCKERHUB_USERNAME --password-stdin
-
-      #      - run: |
-#          TAG=0.1.$CIRCLE_BUILD_NUM
-#          docker build -t circleci-public/circleci-demo-docker:$TAG .
-#          echo $DOCKERHUB_PASSWORD | docker login -username $DOCKERHUB_USERNAME --password-stdin
-#          docker push circleci-public/circleci-demo-docker:$TAG
+        - setup_remote_docker:
+            version: 18.06.0-ce
+        #          docker_layer_caching: true
 
 
-      #      - run:
-#          name: Start container and verify it is working
-#          command: |
-#            set -x
-#            docker-compose up -d \
+        # build and push Docker image
+        - run:
+            name: Install Docker Compose
+            command: |
+              curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+              chmod +x ~/docker-compose
+              sudo mv ~/docker-compose /usr/local/bin/docker-compose
+
+        - run:
+            name: Start container and verify it is working
+            command: |
+              set -x
+              docker-compose up -d
+        #            curl http://localhost:5000
+
+        - run: |
+            TAG=0.1.$CIRCLE_BUILD_NUM
+            docker build -t 20200812/circleci-demo-docker:$TAG .
+        #          echo $DOCKERHUB_PASSWORD | docker login -username $DOCKERHUB_USERNAME --password-stdin
+
+        #      - run: |
+        #          TAG=0.1.$CIRCLE_BUILD_NUM
+        #          docker build -t circleci-public/circleci-demo-docker:$TAG .
+        #          echo $DOCKERHUB_PASSWORD | docker login -username $DOCKERHUB_USERNAME --password-stdin
+        #          docker push circleci-public/circleci-demo-docker:$TAG
+
+
+        #      - run:
+    #          name: Start container and verify it is working
+    #          command: |
+    #            set -x
+    #            docker-compose up -d \
+
