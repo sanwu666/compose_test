@@ -165,12 +165,14 @@ jobs:
       #            set -x
       #            docker-compose up -d \
 
-  job3:
-    docker:
-      - image: 20200812/circlecidemo:v3
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+#  job3:
+#    docker:
+#      - image: 20200812/circlecidemo:v3
+#        auth:
+#          username: $DOCKERHUB_USERNAME
+#          password: $DOCKERHUB_PASSWORD
+#    steps:
+#
 
 workflows:
   test_flow:
