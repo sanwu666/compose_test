@@ -104,6 +104,7 @@ jobs:
       - image: postgres:9.4.1
         environment:
           POSTGRES_USER: root
+        entrypoint: ["echo",POSTGRES_USER]
 
 
 
