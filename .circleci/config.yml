@@ -153,7 +153,6 @@ jobs:
       #            docker-compose up -d \
 
 workflows:
-  version: 2.1
   test_flow:
-    - jobs:
-        job1
+    jobs:
+      -job
