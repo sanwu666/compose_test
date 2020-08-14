@@ -89,7 +89,7 @@
 ##      - job2:
 ##          requires:
 ##            - job1
-version: 2.0
+version: 2.1
 jobs:
   job1:
     docker:
