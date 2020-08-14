@@ -102,9 +102,9 @@ jobs:
           ENV: test
 
       - image: postgres:9.4.1
+        entrypoint: ["echo username",$POSTGRES_USER]
         environment:
           POSTGRES_USER: root
-        entrypoint: ["echo username",$DOCKERHUB_USERNAME]
 
 
 
