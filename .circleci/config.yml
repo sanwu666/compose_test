@@ -100,8 +100,10 @@ jobs:
       - image: mongo:2.6.8
         environment:
           ENV: test
-#        entrypoint: ["echo", "this is", $ENV]
-        entrypoint: echo this is $ENV
+
+      - image: postgres:9.4.1
+          environment:
+            POSTGRES_USER: root
 
 
 
