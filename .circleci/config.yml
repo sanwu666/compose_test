@@ -95,7 +95,7 @@ jobs:
     docker:
       - image: circleci/node:10
 
-    working_directory: /mnt/ramdisk
+#    working_directory: /mnt/ramdisk
     steps:
       - run: |
           echo '#!/bin/sh' > run.sh
