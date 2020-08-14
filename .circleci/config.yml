@@ -102,8 +102,8 @@ jobs:
           ENV: test
 
       - image: postgres:9.4.1
-          environment:
-            POSTGRES_USER: root
+        environment:
+          POSTGRES_USER: root
 
 
 
