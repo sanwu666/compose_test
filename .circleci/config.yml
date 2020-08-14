@@ -153,5 +153,6 @@ jobs:
       #            docker-compose up -d \
 
 workflows:
-  jobs:
-    - job1
+  test_flow:
+    - jobs:
+        job1
