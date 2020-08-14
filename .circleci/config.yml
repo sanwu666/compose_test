@@ -155,4 +155,4 @@ jobs:
 workflows:
   test_flow:
     jobs:
-      -job
+      - job
