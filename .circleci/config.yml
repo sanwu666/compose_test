@@ -94,6 +94,8 @@ jobs:
   job1:
     docker:
       - image: circleci/node:10
+        environment:
+          ENV: CI
 
 #    working_directory: /mnt/ramdisk
     steps:
