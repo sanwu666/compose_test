@@ -103,18 +103,21 @@ jobs:
 
       - image: postgres:9.4.1
         command: ["echo username $POSTGRES_USER",$POSTGRES_USER]
-      environment:
-        POSTGRES_USER: root
+        environment:
+          POSTGRES_USER: root
 
 
 
     #    working_directory: /mnt/ramdisk
+    environment:
+      env: dev
     steps:
       - run: |
           echo '#!/bin/sh' > run.sh
           echo 'echo Hello world!' >> run.sh
           chmod +x run.sh
       - run: ./run.sh
+      - run: echo env
 
   job2:
     docker:
