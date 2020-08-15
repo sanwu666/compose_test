@@ -94,8 +94,8 @@ jobs:
   job1:
     docker:
       - image: circleci/node:10
-#        environment:
-#          ENV: CI
+        user: user1
+
 
       - image: mongo:2.6.8
         environment:
