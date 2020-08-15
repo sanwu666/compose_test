@@ -103,8 +103,8 @@ jobs:
 
       - image: postgres:9.4.1
         command: ["echo username $POSTGRES_USER",$POSTGRES_USER]
-        environment:
-          POSTGRES_USER: root
+      environment:
+        POSTGRES_USER: root
 
 
 
