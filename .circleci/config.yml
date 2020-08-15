@@ -110,7 +110,7 @@ jobs:
 
     #    working_directory: /mnt/ramdisk
     environment:
-      env: dev
+      ENV: dev
     steps:
       - run: |
           echo '#!/bin/sh' > run.sh
@@ -118,6 +118,7 @@ jobs:
           chmod +x run.sh
       - run: ./run.sh
       - run: echo $ENV
+
 
   job2:
     docker:
