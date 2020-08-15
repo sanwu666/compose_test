@@ -117,7 +117,7 @@ jobs:
           echo 'echo Hello world!' >> run.sh
           chmod +x run.sh
       - run: ./run.sh
-      - run: echo env
+      - run: echo $ENV
 
   job2:
     docker:
