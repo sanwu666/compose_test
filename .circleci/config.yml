@@ -149,7 +149,7 @@ jobs:
           command: |
             set -x
             docker-compose build
-            docker-compose up -d
+#            docker-compose up -d
       #            curl http://localhost:5000
 
       - run: |
