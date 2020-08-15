@@ -173,11 +173,18 @@ jobs:
   job3:
     docker:
       - image: 20200812/circlecidemo:v3
-#        auth:
-#          username: $DOCKERHUB_USERNAME
-#          password: $DOCKERHUB_PASSWORD
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     steps:
       - run: echo this is auth test
+
+  job4:
+    machine:
+      - image: 20200812/circlecidemo:v3
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
 
 
 
@@ -185,4 +192,4 @@ workflows:
   test_flow:
     jobs:
 #      - job1
-      - job3
+      - job4
