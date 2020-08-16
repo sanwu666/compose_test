@@ -3,29 +3,22 @@ jobs:
   job1:
     docker:
       - image: circleci/node:10
-        environment:
-          ENV: test
 
       - image: mongo:2.6.8
-        environment:
-          ENV: test
 
       - image: postgres:9.4.1
-        environment:
-          POSTGRES_USER: root
+
 
 
 
     #    working_directory: /mnt/ramdisk
-    environment:
-      ENV: dev
+
     steps:
       - run: |
           echo '#!/bin/sh' > run.sh
           echo 'echo Hello world!' >> run.sh
           chmod +x run.sh
       - run: ./run.sh
-      - run: echo $ENV
 
 
   job2:
