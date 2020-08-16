@@ -51,7 +51,7 @@ jobs:
             set -x
             docker-compose build
             docker-compose up -d
-      #            curl http://localhost:5000
+            curl http://localhost:5000
 
 #      - run: |
 #          TAG=0.1.$CIRCLE_BUILD_NUM
@@ -81,12 +81,17 @@ jobs:
       - run: echo this is auth test
 
   job4:
-    machine:
-      - image: ubuntu-1604:201903-01
+    docker:
       - image: circleci/node:10
 
     steps:
-      - run: echo test
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t circleci-public/circleci-demo-docker:$TAG .
+          echo $DOCKERHUB_PASSWORD | docker login -username $DOCKERHUB_USERNAME --password-stdin
+          docker push circleci-public/circleci-demo-docker:$TAG
+
+
 
   job5:
     docker:
