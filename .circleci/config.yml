@@ -3,6 +3,7 @@ jobs:
   job1:
     docker:
       - image: circleci/node:10
+        LABEL com.circleci.preserve-entrypoint=true
         environment:
           ENV: test
 
@@ -11,7 +12,6 @@ jobs:
           ENV: test
 
       - image: postgres:9.4.1
-        command: echo $POSTGRES_USER
         environment:
           POSTGRES_USER: root
 
