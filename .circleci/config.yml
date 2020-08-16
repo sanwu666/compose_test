@@ -80,12 +80,13 @@ jobs:
     steps:
       - run: echo this is auth test
 
-#  job4:
-#    machine:
-#      - image: 20200812/circlecidemo:v3
-#        auth:
-#          username: $DOCKERHUB_USERNAME
-#          password: $DOCKERHUB_PASSWORD
+  job4:
+    machine:
+      - image: ubuntu-1604:201903-01
+      - image: circleci/node:10
+
+    steps:
+      - run: echo test
 
   job5:
     docker:
@@ -103,4 +104,4 @@ jobs:
 workflows:
   test_flow:
     jobs:
-      - job1
+      - job4
