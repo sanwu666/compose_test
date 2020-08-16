@@ -1,100 +1,8 @@
-#version: 2.1
-#commands:
-#  sayhello:
-#    description: "A very simple command for demonstration purposes"
-#    parameters:
-#      to:
-#        type: string
-#        default: "Hello World"
-#    steps:
-#      - run: echo << parameters.to >>
-#
-#executors:
-#  my-executor:
-#    docker:
-#      - image: circleci/ruby:2.5.1-node-browsers
-#
-#jobs:
-#  job1:
-#    docker:
-#      - image: circleci/node:10
-#
-#    steps:
-#      - checkout
-#      - run: npm install
-#      - run: npm test
-#
-#  job2:
-#    docker:
-#      - image: circleci/node:10
-#
-#    steps:
-#      - checkout
-#      - run: cat README.md
-#
-##  my-job:
-##    executor: my-executor
-##    steps:
-##      - run: echo outside the executor
-#
-#  test-job:
-#    docker:
-#      - image: buildpack-deps:trusty
-#      - image: mongo:2.6.8
-##        entrypoint: ["echo", "this is", "test"]
-#      - image: 20200812/circlecidemo:v3
-#        auth:
-#          username: $DOCKERHUB_USERNAME
-#          password: $DOCKERHUB_PASSWORD
-#
-#    working_directory: ~/project
-#    steps:
-#            # command will execute in trusty container
-#            # and can access mongo on localhost
-#      - checkout
-#      - set-remote-docker
-##      - run: echo this is step
-##      - run: sleep 5 && nc -vz localhost 27017
-#
-#
-#  machine-job:
-#    machine:
-#      image: ubuntu-1604:202007-01
-#    steps:
-#      - checkout
-#      - run:
-#          name: "Testing"
-#          command: echo "Hi"
-#
-#  job4:
-#    docker:
-#      - image: circleci/node:10
-#    steps:
-#      - run:
-#          name: Install Docker Compose
-#          command: |
-#            set -x
-#            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-#            chmod +x /usr/local/bin/docker-compose
-#
-#workflows:
-#  version: 2
-#  one-and-two:
-#    jobs:
-#      - test-job
-#
-##  two-and-three:
-##    jobs:
-##      - job1
-##      - job2:
-##          requires:
-##            - job1
 version: 2.1
 jobs:
   job1:
     docker:
       - image: circleci/node:10
-        user: user1
 
 
       - image: mongo:2.6.8
@@ -179,17 +87,17 @@ jobs:
     steps:
       - run: echo this is auth test
 
-  job4:
-    machine:
-      - image: 20200812/circlecidemo:v3
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+#  job4:
+#    machine:
+#      - image: 20200812/circlecidemo:v3
+#        auth:
+#          username: $DOCKERHUB_USERNAME
+#          password: $DOCKERHUB_PASSWORD
+
 
 
 
 workflows:
   test_flow:
     jobs:
-#      - job1
-      - job4
+      - job1
