@@ -5,12 +5,8 @@ jobs:
       - image: circleci/node:10
 
       - image: mongo:2.6.8
-        entrypoint: echo test
-        command: echo cmd
 
       - image: postgres:9.4.1
-
-
 
     working_directory: /mnt/ramdisk
 
@@ -85,6 +81,7 @@ jobs:
       - image: circleci/node:10
 
     steps:
+      - checkout
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker build -t circleci-public/circleci-demo-docker:$TAG .
