@@ -3,8 +3,8 @@ jobs:
   job1:
     docker:
       - image: circleci/node:10
-#        LABEL com.circleci.preserve-entrypoint=true
-        ENTRYPOINT: echo ENV
+        LABEL com.circleci.preserve-entrypoint=true
+        ENTRYPOINT contacts
         environment:
           ENV: test
 
