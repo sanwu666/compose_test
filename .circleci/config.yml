@@ -3,7 +3,8 @@ jobs:
   job1:
     docker:
       - image: circleci/node:10
-
+        environment:
+          ENV: test
 
       - image: mongo:2.6.8
         environment:
