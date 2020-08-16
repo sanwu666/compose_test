@@ -98,7 +98,7 @@ jobs:
   job-label:
     docker:
       - image: .
-    step:
+    steps:
       - run: echo this is label test
 
 
