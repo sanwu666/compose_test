@@ -97,11 +97,11 @@ jobs:
 
   job5:
     docker:
-      -image: 20200812/circlecidemo:v3
-       auth:
-         username: $DOCKERHUB_USERNAME
-         password: $DOCKERHUB_PASSWORD
-       entrypoint: echo test
+      - image: 20200812/circlecidemo:v3
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+        entrypoint: echo test
 
 
     steps:
