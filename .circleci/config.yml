@@ -95,11 +95,14 @@ jobs:
 #        auth:
 #          username: $DOCKERHUB_USERNAME
 #          password: $DOCKERHUB_PASSWORD
-
-
+  job-label:
+    docker:
+      - image: .
+    step:
+      - run: echo this is label test
 
 
 workflows:
   test_flow:
     jobs:
-      - job1
+      - job-label
