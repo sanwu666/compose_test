@@ -23,29 +23,22 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      # ... steps for building/testing app ...
-      #      - run:
-      #          name: Install Docker client
-      #          command: apk add docker-cli
-
       - setup_remote_docker:
           version: 18.06.0-ce
-      #          docker_layer_caching: true
+#                docker_layer_caching: true
 
-
-      # build and push Docker image
-      - run:
-          name: Install Docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+#       install docker-compose
+#      - run:
+#          name: Install Docker Compose
+#          command: |
+#            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+#            chmod +x ~/docker-compose
+#            sudo mv ~/docker-compose /usr/local/bin/docker-compose
 
       - run:
           name: Start container and verify it is working
           command: |
             set -x
-            docker-compose build
             docker-compose up -d
             curl http://localhost:5000
 
@@ -111,4 +104,4 @@ jobs:
 workflows:
   test_flow:
     jobs:
-      - job4
+      - job2
