@@ -4,8 +4,8 @@ jobs:
     docker:
       - image: circleci/node:10
       - image: mongo:2.6.8
-#        entrypoint: ["echo"]
-#        command: ["this is test"]
+        entrypoint: ["echo"]
+        command: ["this is test"]
 
       - image: postgres:9.4.1
 
@@ -97,3 +97,4 @@ workflows:
   test_flow:
     jobs:
       - job1
+      - job5
