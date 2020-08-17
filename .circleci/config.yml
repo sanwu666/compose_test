@@ -7,8 +7,11 @@ jobs:
       - image: mongo:2.6.8
 
 #      - image: postgres:9.4.1
+      - image: circleci-public/circleci-demo-docker:0.1.7
 
-#    working_directory: /mnt/ramdisk
+
+    #    working_directory: /mnt/ramdisk
+
 
     steps:
       - run: |
