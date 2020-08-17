@@ -16,7 +16,8 @@ jobs:
           echo 'echo Hello world!' >> run.sh
           chmod +x run.sh
       - run: ./run.sh
-      - run: nc -vz hocalhost 27017
+      - run: netstat -lanp | grep "27017"
+
 
 
   job2:
