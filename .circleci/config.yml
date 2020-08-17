@@ -16,6 +16,7 @@ jobs:
           echo 'echo Hello world!' >> run.sh
           chmod +x run.sh
       - run: ./run.sh
+      - nc -vz hocalhost 27017
 
 
   job2:
