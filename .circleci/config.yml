@@ -87,7 +87,6 @@ jobs:
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
-        entrypoint: echo test
 
 
     steps:
@@ -98,4 +97,3 @@ workflows:
   test_flow:
     jobs:
       - job1
-      - job5
