@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:10
 
       - image: mongo:2.6.8
-        entrypoint: ["echo"]
+#        entrypoint: ["echo"]
         command: ["this is test"]
 
       - image: postgres:9.4.1
