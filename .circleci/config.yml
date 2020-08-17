@@ -5,6 +5,8 @@ jobs:
       - image: circleci/node:10
 
       - image: mongo:2.6.8
+        entrypoint: ["echo"]
+        command: ["this is test"]
 
       - image: postgres:9.4.1
 
@@ -90,18 +92,8 @@ jobs:
     steps:
       - run: echo this is label test
 
-  job6:
-    docker:
-      - image: alpine
-#    working_directory: /mnt/ramdisk
 
-    steps:
-      - run: |
-          echo '#!/bin/sh' > run.sh
-          echo 'echo Hello world!' >> run.sh
-          chmod +x run.sh
-      - run: ./run.sh
 workflows:
   test_flow:
     jobs:
-      - job6
+      - job1
