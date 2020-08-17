@@ -3,10 +3,10 @@ jobs:
   job1:
     docker:
       - image: circleci/node:10
-
+        user: test
       - image: mongo:2.6.8
 #        entrypoint: ["echo"]
-        command: ["this is test"]
+#        command: ["this is test"]
 
       - image: postgres:9.4.1
 
