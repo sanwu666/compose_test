@@ -6,7 +6,7 @@ jobs:
 
       - image: mongo:2.6.8
 
-      - image: postgres:9.4.1
+#      - image: postgres:9.4.1
 
     working_directory: /mnt/ramdisk
 
